@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────
+#  SOUNDLOG — .gitignore
+# ─────────────────────────────────────────────────────────────
+
+# ── Terraform ─────────────────────────────────────────────────
+# Estado local (el real está en Azure Storage)
+*.tfstate
+*.tfstate.backup
+*.tfstate.*.backup
+
+# Variables con secretos reales — NUNCA subir
+terraform.tfvars
+*.auto.tfvars
+
+# Caché y plugins de Terraform
+.terraform/
+.terraform.lock.hcl   
+
+# Outputs con datos sensibles
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Plan files (pueden contener secretos)
+*.tfplan
+
+# ── Node.js (Frontend) ────────────────────────────────────────
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+
+# ── Python (Backend) ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.env
+
+# ── IDEs ──────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# ── OS ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+logs/
+
+README.md
