@@ -1,0 +1,9 @@
+.dockerignore
+node_modules
+npm-debug.log
+dist
+.env.local
+.git
+.gitignore
+README.md
+GETTING_STARTED.md

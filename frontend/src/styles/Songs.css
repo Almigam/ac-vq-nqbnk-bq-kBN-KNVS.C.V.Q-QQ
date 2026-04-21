@@ -1,0 +1,96 @@
+.songs-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.songs-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.songs-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.songs-header p {
+  color: #999;
+  font-size: 1.1rem;
+}
+
+.songs-table {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.songs-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.songs-table thead {
+  background-color: #2a2a2a;
+  border-bottom: 1px solid #333;
+}
+
+.songs-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #667eea;
+}
+
+.songs-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.songs-table tbody tr:hover {
+  background-color: rgba(102, 126, 234, 0.05);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.pagination-btn {
+  background-color: #1a1a1a;
+  color: #667eea;
+  border: 1px solid #667eea;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #667eea;
+  color: white;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .songs-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .songs-table table {
+    font-size: 0.9rem;
+  }
+
+  .songs-table th,
+  .songs-table td {
+    padding: 0.75rem;
+  }
+}

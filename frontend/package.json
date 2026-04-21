@@ -1,0 +1,30 @@
+{
+  "name": "soundlog-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Soundlog - Album and Song Reviews",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.31",
+    "@types/react-dom": "^18.2.14",
+    "@typescript-eslint/eslint-plugin": "^6.8.1",
+    "@typescript-eslint/parser": "^6.8.1",
+    "@vitejs/plugin-react": "^4.1.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react": "^7.33.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
+  }
+}

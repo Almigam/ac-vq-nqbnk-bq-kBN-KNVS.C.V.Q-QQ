@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  soundlog-frontend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+    depends_on:
+      - soundlog-backend
+    networks:
+      - soundlog-network
+
+  soundlog-backend:
+    build: ../backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mssql+pyodbc://@localhost/soundlog?driver=ODBC+Driver+17+for+SQL+Server
+    networks:
+      - soundlog-network
+
+networks:
+  soundlog-network:
+    driver: bridge
