@@ -3,15 +3,12 @@ Soundlog API — Backend principal
 """
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-import os
 from dotenv import load_dotenv
-from routes import auth
+from routes import auth, users, albums, songs, reviews
 from core.config import settings
 
-# Cargar variables de entorno
 load_dotenv()
 
-# Crear aplicación FastAPI
 app = FastAPI(
     title=settings.app_name,
     description="API para reseñar álbumes y canciones",
@@ -20,8 +17,6 @@ app = FastAPI(
     openapi_url="/api/openapi.json",
 )
 
-# CORS dinámico — lee los orígenes de config
-# En local: localhost. En Azure: URL del Blob Storage frontend
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.origins_list,
@@ -30,19 +25,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Incluir routers
-app.include_router(auth.router)
-
-# TODO: Agregar routers para:
-# - /api/v1/users   — Gestión de usuarios
-# - /api/v1/albums  — Gestión de álbumes
-# - /api/v1/songs   — Gestión de canciones
-# - /api/v1/reviews — Reseñas
+# ── Routers ───────────────────────────────────────────────────
+app.include_router(auth.router)       # /api/v1/auth
+app.include_router(users.router)      # /api/v1/users
+app.include_router(albums.router)     # /api/v1/albums
+app.include_router(songs.router)      # /api/v1/songs
+app.include_router(reviews.router)    # /api/v1/reviews
 
 
 @app.get("/")
 async def root():
-    """Ruta raíz — verificar que la API está funcionando"""
     return {
         "message": "Bienvenido a Soundlog API",
         "version": "1.0.0",

@@ -18,6 +18,9 @@ class UserCreate(UserBase):
     """Schema para crear usuario"""
     password: str
 
+class UserUpdate(BaseModel):
+    """Solo los campos que el usuario puede actualizar"""
+    full_name: Optional[str] = None
 
 class UserResponse(UserBase):
     """Schema de respuesta para usuario"""
@@ -43,6 +46,13 @@ class AlbumCreate(AlbumBase):
     """Schema para crear álbum"""
     pass
 
+class AlbumUpdate(BaseModel):
+    """"Todos los campos son opcionales para actualización"""
+    title: Optional[str] = None
+    artist: Optional[str] = None
+    release_year: Optional[int] = None
+    description: Optional[str] = None
+    cover_image_url: Optional[str] = None
 
 class AlbumResponse(AlbumBase):
     """Schema de respuesta para álbum"""
@@ -66,6 +76,12 @@ class SongCreate(SongBase):
     """Schema para crear canción"""
     pass
 
+class SongUpdate(BaseModel):
+    """Todos los campos son opcionales para actualización"""
+    title: Optional[str] = None
+    artist: Optional[str] = None
+    album_id: Optional[int] = None
+    duration: Optional[int] = None
 
 class SongResponse(SongBase):
     """Schema de respuesta para canción"""
