@@ -3,7 +3,7 @@ Rutas de Canciones
 """
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from core.database import get_db
 from core.models import Song, Album
 from core.schemas import SongCreate, SongResponse, SongUpdate
@@ -16,32 +16,21 @@ router = APIRouter(prefix="/api/v1/songs", tags=["songs"])
 async def get_songs(
     skip: int = 0,
     limit: int = 20,
-    album_id: int = None,
+    album_id: Optional[int] = None,
     db: Session = Depends(get_db)
 ):
-    """
-    Listar canciones con paginación.
-    Opcionalmente filtrar por álbum con ?album_id=1
-    """
     query = db.query(Song)
-    if album_id:
+    if album_id is not None:
         query = query.filter(Song.album_id == album_id)
     songs = query.offset(skip).limit(limit).all()
     return songs
 
 
 @router.get("/{song_id}", response_model=SongResponse)
-async def get_song(
-    song_id: int,
-    db: Session = Depends(get_db)
-):
-    """Obtener una canción por ID"""
+async def get_song(song_id: int, db: Session = Depends(get_db)):
     song = db.query(Song).filter(Song.id == song_id).first()
     if not song:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Canción no encontrada"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Canción no encontrada")
     return song
 
 
@@ -51,16 +40,10 @@ async def create_song(
     current_user_id: int = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Crear una nueva canción — requiere autenticación"""
-    # Verificar que el álbum existe si se especifica
-    if song.album_id:
+    if song.album_id is not None:
         album = db.query(Album).filter(Album.id == song.album_id).first()
         if not album:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail="Álbum no encontrado"
-            )
-
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Álbum no encontrado")
     db_song = Song(**song.model_dump())
     db.add(db_song)
     db.commit()
@@ -75,18 +58,11 @@ async def update_song(
     current_user_id: int = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Actualizar una canción — requiere autenticación"""
     song = db.query(Song).filter(Song.id == song_id).first()
     if not song:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Canción no encontrada"
-        )
-
-    update_data = updates.model_dump(exclude_unset=True)
-    for field, value in update_data.items():
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Canción no encontrada")
+    for field, value in updates.model_dump(exclude_unset=True).items():
         setattr(song, field, value)
-
     db.commit()
     db.refresh(song)
     return song
@@ -98,12 +74,8 @@ async def delete_song(
     current_user_id: int = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Eliminar una canción — requiere autenticación"""
     song = db.query(Song).filter(Song.id == song_id).first()
     if not song:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Canción no encontrada"
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Canción no encontrada")
     db.delete(song)
     db.commit()
