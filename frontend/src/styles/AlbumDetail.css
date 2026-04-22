@@ -1,23 +1,25 @@
 .album-detail-container {
-  max-width: 1000px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem;
 }
 
+/* ── Header ───────────────────────────────────── */
 .album-detail-header {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 3rem;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
   align-items: start;
 }
 
 .album-cover-large {
-  width: 300px;
+  width: 260px;
   aspect-ratio: 1;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+  flex-shrink: 0;
 }
 
 .album-cover-large img {
@@ -32,71 +34,164 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-size: 5rem;
+  background: linear-gradient(145deg, #1e2a36 0%, #263040 100%);
+  font-size: 4.5rem;
+  color: var(--text-dim);
+}
+
+.album-detail-info {
+  padding-top: 0.5rem;
 }
 
 .album-detail-info h1 {
-  font-size: 2.5rem;
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.15;
   margin-bottom: 0.5rem;
 }
 
 .detail-artist {
-  font-size: 1.3rem;
-  color: #667eea;
-  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  color: var(--orange);
+  font-weight: 500;
+  margin-bottom: 0.4rem;
 }
 
 .detail-year {
-  color: #999;
-  font-size: 1rem;
+  color: var(--text-dim);
+  font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
 .detail-description {
-  color: #ccc;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-size: 0.95rem;
+  margin-bottom: 1.75rem;
+  max-width: 480px;
 }
 
 .album-stats {
   display: flex;
-  gap: 2rem;
-  color: #999;
+  gap: 1.5rem;
 }
 
-/* Songs Section */
-.songs-section {
-  margin: 3rem 0;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid #333;
+.album-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-.songs-section h2 {
-  font-size: 1.5rem;
+.album-stat-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+.album-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+/* ── Stars rating ─────────────────────────────── */
+.rating-display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   margin-bottom: 1.5rem;
+}
+
+.rating-stars {
+  color: var(--orange);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+
+.rating-number {
+  font-weight: 700;
+  color: #fff;
+  font-size: 1.05rem;
+}
+
+.rating-count {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* ── Divider ──────────────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 2.5rem 0;
+}
+
+/* ── Songs ────────────────────────────────────── */
+.songs-section {
+  margin-bottom: 2.5rem;
+}
+
+.songs-section h2,
+.reviews-section h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.songs-section h2 .count,
+.reviews-section h2 .count {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  background: var(--bg-elevated);
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 500;
 }
 
 .songs-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .song-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 8px;
-  transition: all 0.3s;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.song-item:last-child {
+  border-bottom: none;
 }
 
 .song-item:hover {
-  border-color: #667eea;
-  background-color: rgba(102, 126, 234, 0.05);
+  background: var(--bg-hover);
+}
+
+.song-number {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  width: 24px;
+  flex-shrink: 0;
+  margin-right: 1rem;
+  text-align: right;
 }
 
 .song-info {
@@ -104,112 +199,119 @@
 }
 
 .song-title {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-bottom: 0.1rem;
+  color: var(--text);
 }
 
 .song-artist {
-  color: #999;
-  font-size: 0.95rem;
+  color: var(--text-dim);
+  font-size: 0.82rem;
 }
 
 .song-duration {
-  color: #666;
-  font-family: monospace;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  font-family: 'Outfit', monospace;
   margin-left: 1rem;
+  flex-shrink: 0;
 }
 
-/* Reviews Section */
+/* ── Reviews ──────────────────────────────────── */
 .reviews-section {
-  margin-top: 3rem;
-}
-
-.reviews-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  margin-top: 2.5rem;
 }
 
 .review-form {
-  background-color: #1a1a1a;
-  padding: 2rem;
-  border-radius: 12px;
-  border: 1px solid #333;
+  background: var(--bg-card);
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
   margin-bottom: 2rem;
 }
 
 .review-form h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-}
-
-.review-form .form-group {
-  margin-bottom: 1.5rem;
-}
-
-.review-form textarea {
-  resize: vertical;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--text);
 }
 
 .review-form .submit-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--orange);
   color: white;
   width: 100%;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 11px;
+  transition: background 0.2s;
+}
+
+.review-form .submit-btn:hover:not(:disabled) {
+  background: var(--orange-dim);
 }
 
 .reviews-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .review-item {
-  background-color: #1a1a1a;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #333;
-  transition: all 0.3s;
+  background: var(--bg-card);
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s;
 }
 
 .review-item:hover {
-  border-color: #667eea;
+  border-color: rgba(255,128,0,0.2);
 }
 
 .review-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .review-rating {
   font-weight: 600;
-  color: #667eea;
+  color: var(--orange);
+  font-size: 0.95rem;
 }
 
 .review-date {
-  color: #666;
-  font-size: 0.9rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
 }
 
 .review-comment {
-  color: #ccc;
-  line-height: 1.6;
+  color: var(--text-muted);
+  line-height: 1.65;
+  font-size: 0.92rem;
 }
 
 .no-reviews {
   text-align: center;
-  color: #666;
-  padding: 2rem;
+  color: var(--text-dim);
+  padding: 3rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
   .album-detail-header {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   .album-cover-large {
-    width: 100%;
-    max-width: 300px;
+    width: 200px;
     margin: 0 auto;
   }
 

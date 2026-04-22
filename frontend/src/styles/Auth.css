@@ -3,81 +3,97 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 1rem;
+  padding: 2rem 1rem;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% -20%,
+      rgba(255, 128, 0, 0.08) 0%,
+      transparent 70%),
+    var(--bg);
 }
 
 .auth-card {
-  background-color: #1a1a1a;
-  border-radius: 12px;
-  padding: 2.5rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.25rem;
   width: 100%;
   max-width: 400px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+}
+
+.auth-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
 }
 
 .auth-card h1 {
+  font-family: 'DM Serif Display', serif;
   font-size: 2rem;
-  margin-bottom: 1rem;
+  font-weight: 400;
   text-align: center;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--orange);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.01em;
 }
 
 .subtitle {
   text-align: center;
-  color: #999;
+  color: var(--text-dim);
   margin-bottom: 2rem;
-  font-size: 0.95rem;
+  font-size: 0.88rem;
+}
+
+.auth-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1.5rem 0;
 }
 
 .auth-card form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--orange);
   color: white;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 11px;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-top: 1rem;
-  transition: transform 0.2s;
+  margin-top: 0.75rem;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.01em;
 }
 
 .submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
+  background: var(--orange-dim);
+  box-shadow: var(--shadow-orange);
+  transform: translateY(-1px);
 }
 
 .auth-link {
   text-align: center;
   margin-top: 1.5rem;
-  color: #999;
-  font-size: 0.9rem;
+  color: var(--text-dim);
+  font-size: 0.88rem;
 }
 
 .auth-link a {
-  color: #667eea;
+  color: var(--orange);
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.3s;
+  transition: opacity 0.2s;
 }
 
 .auth-link a:hover {
-  color: #764ba2;
+  opacity: 0.8;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .auth-card {
-    padding: 2rem;
-  }
-
-  .auth-card h1 {
-    font-size: 1.5rem;
+    padding: 2rem 1.5rem;
   }
 }
